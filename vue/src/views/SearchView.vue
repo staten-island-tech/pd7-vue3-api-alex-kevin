@@ -8,7 +8,10 @@ async function getDataFromAPI(url) {
       console.log(response.status)
       throw Error(response.status)
     } else {
-      cafeteriaData.value = response.json()
+      cafeteriaData.value = await response.json()
+      // console.log(cafeteriaData)
+
+      console.log(cafeteriaData.value)
     }
   } catch (error) {
     console.log(error)
@@ -30,7 +33,7 @@ onMounted(() => {
     <th>Level</th>
     <th>Zipcode</th>
   </tr>
-  <tr v-for="cafeteria in cafeteriaData" :key="cafeteria.entityid">
+  <tr v-for="cafeteria in cafeteriaData.value" :key="cafeteria.entityid">
     <td>{{ cafeteria.schoolname }}</td>
     <td>{{ cafeteria.violationdescription }}</td>
     <td>{{ cafeteria.level }}</td>
