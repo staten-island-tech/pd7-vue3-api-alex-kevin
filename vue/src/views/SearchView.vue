@@ -1,17 +1,18 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { toRaw, ref, onMounted, watch } from 'vue'
+
+const searchQuery = ref('')
+const searchCategory = ref('')
 const cafeteriaData = ref('')
+
 async function getDataFromAPI(url) {
   try {
     let response = await fetch(url)
     if (response.status < 200 || response.status > 299) {
-      console.log(response.status)
       throw Error(response.status)
     } else {
-      cafeteriaData.value = await response.json()
-      // console.log(cafeteriaData)
-
-      console.log(cafeteriaData.value)
+      let jsonData = await response.json()
+      cafeteriaData.value = toRaw(jsonData)
     }
   } catch (error) {
     console.log(error)
@@ -23,17 +24,41 @@ onMounted(() => {
     'https://data.cityofnewyork.us/resource/5ery-qagt.json?$query=SELECT%0A%20%20%60entityid%60%2C%0A%20%20%60schoolname%60%2C%0A%20%20%60number%60%2C%0A%20%20%60street%60%2C%0A%20%20%60city%60%2C%0A%20%20%60state%60%2C%0A%20%20%60borough%60%2C%0A%20%20%60zipcode%60%2C%0A%20%20%60lastinspection%60%2C%0A%20%20%60permittee%60%2C%0A%20%20%60inspectiondate%60%2C%0A%20%20%60ptet%60%2C%0A%20%20%60site_type%60%2C%0A%20%20%60level%60%2C%0A%20%20%60code%60%2C%0A%20%20%60violationdescription%60%2C%0A%20%20%60latitude%60%2C%0A%20%20%60longitude%60%2C%0A%20%20%60communityboard%60%2C%0A%20%20%60councildistrict%60%2C%0A%20%20%60censustract%60%2C%0A%20%20%60bin%60%2C%0A%20%20%60bbl%60%2C%0A%20%20%60nta%60%2C%0A%20%20%60borocode%60'
   )
 })
+
+watch(searchCategory, console.log(searchCategory))
 </script>
 
 <template>
   <p>search interface</p>
+  <div id="search-bar">
+    <label for="select-search-category">Select Search Category:</label>
+    <select name="select-search-category" id="select-search-category" v-model="searchCategory">
+      <option value="schoolname">schoolname</option>
+      <option value="violationdescription">violationdescription</option>
+      <option value="level">level</option>
+      <option value="zipcode">zipcode</option>
+    </select>
+    <input v-model="searchQuery" placeholder="Enter Search Query" />
+  </div>
+
   <tr>
     <th>School Name</th>
     <th>Violation Description</th>
     <th>Level</th>
     <th>Zipcode</th>
   </tr>
-  <tr v-for="cafeteria in cafeteriaData.value" :key="cafeteria.entityid">
+  <tr v-if="searchQuery === ''" v-for="cafeteria in cafeteriaData">
+    <td>{{ cafeteria.schoolname }}</td>
+    <td>{{ cafeteria.violationdescription }}</td>
+    <td>{{ cafeteria.level }}</td>
+    <td>{{ cafeteria.zipcode }}</td>
+  </tr>
+  <tr
+    v-else
+    v-for="cafeteria in cafeteriaData.filter((item) =>
+      item[searchCategory].toLowerCase().includes(searchQuery.toLowerCase())
+    )"
+  >
     <td>{{ cafeteria.schoolname }}</td>
     <td>{{ cafeteria.violationdescription }}</td>
     <td>{{ cafeteria.level }}</td>
