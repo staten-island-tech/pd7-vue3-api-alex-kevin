@@ -17,7 +17,7 @@ async function getDataFromAPI(url) {
     }
   } catch (error) {
     console.log(error)
-    alert(error)
+    router.push(`/cafeteria/${error}`)
   }
 }
 onMounted(() => {
@@ -57,17 +57,15 @@ const cafeteriaPath = computed(() => {
       </tr>
     </thead>
     <tbody>
-      <tr v-if="searchQuery === ''" v-for="cafeteria in cafeteriaData">
-        <router-link
-          tag="tr"
-          style="text-decoration: none; color: inherit; width: inherit"
-          :to="cafeteriaPath"
-        >
-          <td>{{ cafeteria.schoolname }}</td>
-          <td>{{ cafeteria.violationdescription }}</td>
-          <td>{{ cafeteria.level }}</td>
-          <td>{{ cafeteria.zipcode }}</td>
-        </router-link>
+      <tr
+        v-if="searchQuery === ''"
+        v-for="cafeteria in cafeteriaData"
+        @click="this.$router.push({ name: 'Cafeteria', params: {} })"
+      >
+        <td>{{ cafeteria.schoolname }}</td>
+        <td>{{ cafeteria.violationdescription }}</td>
+        <td>{{ cafeteria.level }}</td>
+        <td>{{ cafeteria.zipcode }}</td>
       </tr>
       <tr
         v-else
