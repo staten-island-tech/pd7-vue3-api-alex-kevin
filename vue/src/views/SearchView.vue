@@ -26,9 +26,13 @@ onMounted(() => {
   )
 })
 
-/* const cafeteriaPath = computed(() => {
+const props = defineProps({
+  cafeteria: Object
+})
+
+const cafeteriaPath = computed(() => {
   return `/cafeteria/${props.cafeteria}`
-}) */
+})
 </script>
 
 <template>
@@ -56,8 +60,8 @@ onMounted(() => {
       <tr v-if="searchQuery === ''" v-for="cafeteria in cafeteriaData">
         <router-link
           tag="tr"
-          style="text-decoration: none; color: inherit"
-          to="/cafeteria/{{ cafeteria }}"
+          style="text-decoration: none; color: inherit; width: inherit"
+          :to="cafeteriaPath"
         >
           <td>{{ cafeteria.schoolname }}</td>
           <td>{{ cafeteria.violationdescription }}</td>
