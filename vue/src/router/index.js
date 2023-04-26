@@ -19,7 +19,7 @@ const router = createRouter({
       component: () => import('../views/SearchView.vue')
     },
     {
-      path: '/cafeteria',
+      path: '/cafeteria/:data',
       name: 'Cafeteria',
       props: true,
       component: () => import('../views/CafeteriaView.vue')

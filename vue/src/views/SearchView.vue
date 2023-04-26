@@ -1,5 +1,5 @@
 <script setup>
-import { toRaw, ref, onMounted, computed } from 'vue'
+import { toRaw, ref, onMounted } from 'vue'
 import { RouterLink } from 'vue-router'
 
 const searchQuery = ref('')
@@ -17,7 +17,7 @@ async function getDataFromAPI(url) {
     }
   } catch (error) {
     console.log(error)
-    router.push(`/cafeteria/${error}`)
+    this.$router.push(`/error/${error}`)
   }
 }
 onMounted(() => {
@@ -26,13 +26,9 @@ onMounted(() => {
   )
 })
 
-const props = defineProps({
+/* const props = defineProps({
   cafeteria: Object
-})
-
-const cafeteriaPath = computed(() => {
-  return `/cafeteria/${props.cafeteria}`
-})
+}) */
 </script>
 
 <template>
@@ -60,7 +56,7 @@ const cafeteriaPath = computed(() => {
       <tr
         v-if="searchQuery === ''"
         v-for="cafeteria in cafeteriaData"
-        @click="this.$router.push({ name: 'Cafeteria', params: {} })"
+        @click="this.$router.push({ name: 'Cafeteria', params: { data: toRaw(cafeteria) } })"
       >
         <td>{{ cafeteria.schoolname }}</td>
         <td>{{ cafeteria.violationdescription }}</td>
