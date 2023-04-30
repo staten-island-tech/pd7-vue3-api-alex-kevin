@@ -26,6 +26,8 @@ const props = defineProps({
 function undefinedCatch(value) {
   if (value === '' || value === null || value === undefined) {
     return 'N/A'
+  } else {
+    return value
   }
 }
 </script>
@@ -33,9 +35,9 @@ function undefinedCatch(value) {
 <template>
   <h3>test cafeteria page</h3>
 
-  <h1>{{ $route.params.entityid }}</h1>
-  <h2>{{ $route.params.schoolname }}</h2>
-  <p>{{ $route.params.violationdescription }}</p>
-  <p>{{ $route.params.level }}</p>
-  <p>{{ $route.params.zipcode }}</p>
+  <h1>{{ undefinedCatch($route.params.entityid) }}</h1>
+  <h2>{{ undefinedCatch($route.params.schoolname) }}</h2>
+  <p>{{ undefinedCatch($route.params.violationdescription) }}</p>
+  <p>{{ undefinedCatch($route.params.level) }}</p>
+  <p>{{ undefinedCatch($route.params.zipcode) }}</p>
 </template>
