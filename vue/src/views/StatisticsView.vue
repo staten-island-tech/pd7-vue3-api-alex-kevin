@@ -20,8 +20,20 @@ export default defineComponent({
   },
   setup() {
     const data = ref({
-      labels: ['A', 'February', 'March', 'April'],
-      datasets: [{ data: [40, 20, 12, 50] }]
+      labels: ['A', 'C', 'AVG'],
+      datasets: [
+        {
+          data: [40, 20, 12],
+          label: ['Hygiene level'],
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(255, 159, 64, 0.2)',
+            'rgba(255, 205, 86, 0.2)'
+          ],
+          borderColor: ['rgb(255, 99, 132)', 'rgb(255, 159, 64)', 'rgb(255, 205, 86)'],
+          borderWidth: 1
+        }
+      ]
     })
 
     const options = ref({
@@ -29,7 +41,7 @@ export default defineComponent({
     })
 
     onMounted(() => {
-      const ctx = document.getElementById('chart').getContext('2d')
+      const ctx = document.getElementById('chart')
       new ChartJS(ctx, {
         type: 'bar',
         data: data.value,
