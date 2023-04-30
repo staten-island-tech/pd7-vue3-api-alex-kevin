@@ -1,31 +1,52 @@
-<!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"> -->
+<script>
+import { defineComponent, ref, onMounted } from 'vue'
+import {
+  Chart as ChartJS,
+  Title,
+  Tooltip,
+  Legend,
+  BarElement,
+  CategoryScale,
+  LinearScale
+} from 'chart.js'
+import { Bar } from 'vue-chartjs'
 
-<script setup>
-const ctx = document.getElementById('myChart')
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
-const chart = new Chart(ctx, {
-  type: 'bar',
-  data: {
-    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-    datasets: [
-      {
-        label: '# of Votes',
-        data: [12, 19, 3, 5, 2, 3],
-        borderWidth: 1
-      }
-    ]
+export default defineComponent({
+  name: 'App',
+  components: {
+    Bar
   },
-  options: {
-    scales: {
-      y: {
-        beginAtZero: true
-      }
+  setup() {
+    const data = ref({
+      labels: ['A', 'February', 'March', 'April'],
+      datasets: [{ data: [40, 20, 12, 50] }]
+    })
+
+    const options = ref({
+      responsive: true
+    })
+
+    onMounted(() => {
+      const ctx = document.getElementById('chart').getContext('2d')
+      new ChartJS(ctx, {
+        type: 'bar',
+        data: data.value,
+        options: options.value
+      })
+    })
+    return {
+      data,
+      options
     }
   }
 })
 </script>
 
 <template>
-  <p>statistics page</p>
-  <canvas id="myChart"></canvas>
+  <h1>statistics page</h1>
+  <Bar :data="data" :options="options" />
 </template>
+
+<style scoped></style>
