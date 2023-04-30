@@ -25,13 +25,9 @@ export default defineComponent({
         {
           data: [40, 20, 12],
           label: ['Hygiene level'],
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(255, 159, 64, 0.2)',
-            'rgba(255, 205, 86, 0.2)'
-          ],
-          borderColor: ['rgb(255, 99, 132)', 'rgb(255, 159, 64)', 'rgb(255, 205, 86)'],
-          borderWidth: 1
+          backgroundColor: ['#85c9fa', '#1373d6', '#102e45'],
+          borderColor: ['rgb(66, 191, 245)', 'rgb(15, 209, 255)', 'rgb(39, 196, 186)'],
+          borderWidth: 4
         }
       ]
     })
@@ -41,7 +37,7 @@ export default defineComponent({
     })
 
     onMounted(() => {
-      const ctx = document.getElementById('chart')
+      const ctx = document.getElementById('chart').getContext('2d')
       new ChartJS(ctx, {
         type: 'bar',
         data: data.value,
