@@ -14,12 +14,12 @@ const router = createRouter({
       component: () => import('../views/StatisticsView.vue')
     },
     {
-      path: '/search',
-      name: 'Search',
-      component: () => import('../views/SearchView.vue')
+      path: '/explore',
+      name: 'Explore',
+      component: () => import('../views/ExploreView.vue')
     },
     {
-      path: '/cafeteria/:data',
+      path: '/cafeteria/:entityid/:schoolname/:borough/:number/:street/:address_line_1/:address_line_2/:zipcode/:lastinspection/:permittee/:inspectiondate/:code/:violationdescription/:level/:latitude/:longitude/:communityboard/:councildistrict/:bin/:bbl/:nta',
       name: 'Cafeteria',
       props: true,
       component: () => import('../views/CafeteriaView.vue')

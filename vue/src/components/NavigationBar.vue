@@ -11,8 +11,8 @@ import { RouterLink } from 'vue-router'
       <RouterLink to="/statistics">
         <button>Statistics</button>
       </RouterLink>
-      <RouterLink to="/search">
-        <button>Search</button>
+      <RouterLink to="/explore">
+        <button>Explore</button>
       </RouterLink>
     </nav>
   </header>
