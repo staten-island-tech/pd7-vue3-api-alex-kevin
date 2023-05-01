@@ -157,4 +157,8 @@ table {
   font-size: 2.5rem;
   font-weight: 400;
 }
+
+td:hover {
+  background-color: rgba(133, 201, 250, 0.4);
+}
 </style>
