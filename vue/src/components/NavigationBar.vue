@@ -38,6 +38,11 @@ button {
   border-style: none;
   padding: 0.33rem;
   border-radius: 0.5rem;
+  transition: all 0.5s;
   /* box-shadow: 10px 10px 30px #1062b6, -10px -10px 30px #1684f6; */
+}
+
+button:hover {
+  background-color: #85c9fa;
 }
 </style>
