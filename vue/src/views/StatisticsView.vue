@@ -28,7 +28,7 @@ export default {
         labels: ['G', 'A', 'C'],
         datasets: [
           {
-            label: ['Amount of school'],
+            label: ['Amount of Schools'],
             backgroundColor: ['#85c9fa', '#1373d6', '#102e45'],
             borderColor: ['rgb(66, 191, 245)', 'rgb(15, 209, 255)', 'rgb(39, 196, 186)'],
             borderWidth: 4
@@ -47,7 +47,7 @@ export default {
         labels: ['G', 'A', 'C'],
         datasets: [
           {
-            label: ['Amount of school'],
+            label: ['Amount of Schools'],
             backgroundColor: ['#85c9fa', '#1373d6', '#102e45'],
             borderColor: ['rgb(66, 191, 245)', 'rgb(15, 209, 255)', 'rgb(39, 196, 186)'],
             borderWidth: 4
