@@ -1,17 +1,9 @@
 <script>
 import { ref, onMounted } from 'vue'
-import {
-  Chart as ChartJS,
-  Title,
-  Tooltip,
-  Legend,
-  BarElement,
-  CategoryScale,
-  LinearScale
-} from 'chart.js'
+import { Chart as ChartJS, Title, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
 import { Bar } from 'vue-chartjs'
 
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Legend)
 
 export default {
   name: 'App',
@@ -103,6 +95,7 @@ h1 {
   font-size: 5rem;
   text-align: center;
   margin: 1%;
+<<<<<<< HEAD
   animation: heading 5s infinite;
 }
 
@@ -122,5 +115,7 @@ h1 {
   100% {
     color: blue;
   }
+=======
+>>>>>>> parent of 97b8f19 (adding some animations)
 }
 </style>
