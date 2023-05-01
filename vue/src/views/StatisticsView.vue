@@ -1,15 +1,29 @@
 <script>
+<<<<<<< HEAD
 import { ref, onMounted } from 'vue'
 import { Chart as ChartJS, Title, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
+=======
+import { defineComponent, ref, onMounted } from 'vue'
+import {
+  Chart as ChartJS,
+  Title,
+  Tooltip,
+  Legend,
+  BarElement,
+  CategoryScale,
+  LinearScale
+} from 'chart.js'
+>>>>>>> parent of 4672f62 (finished the chart)
 import { Bar } from 'vue-chartjs'
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Legend)
 
-export default {
+export default defineComponent({
   name: 'App',
   components: {
     Bar
   },
+<<<<<<< HEAD
 
   data() {
     return {
@@ -71,16 +85,44 @@ export default {
             this.levelAVG.length
           ]
           this.loaded = true
+=======
+  setup() {
+    const data = ref({
+      labels: ['A', 'C', 'AVG'],
+      datasets: [
+        {
+          data: [40, 20, 12],
+          label: ['Hygiene level'],
+          backgroundColor: ['#85c9fa', '#1373d6', '#102e45'],
+          borderColor: ['rgb(66, 191, 245)', 'rgb(15, 209, 255)', 'rgb(39, 196, 186)'],
+          borderWidth: 4
+>>>>>>> parent of 4672f62 (finished the chart)
         }
-      )
-    } catch (error) {
-      console.log(error)
+      ]
+    })
+
+    const options = ref({
+      responsive: true
+    })
+
+    onMounted(() => {
+      const ctx = document.getElementById('chart').getContext('2d')
+      new ChartJS(ctx, {
+        type: 'bar',
+        data: data.value,
+        options: options.value
+      })
+    })
+    return {
+      data,
+      options
     }
   }
-}
+})
 </script>
 
 <template>
+<<<<<<< HEAD
   <h1>School Cleanliness Level</h1>
   <Bar v-if="loaded" :data="data" :options="options" />
   <!-- <chartjs-doughnut
@@ -119,3 +161,10 @@ h1 {
 >>>>>>> parent of 97b8f19 (adding some animations)
 }
 </style>
+=======
+  <h1>statistics page</h1>
+  <Bar :data="data" :options="options" />
+</template>
+
+<style scoped></style>
+>>>>>>> parent of 4672f62 (finished the chart)
