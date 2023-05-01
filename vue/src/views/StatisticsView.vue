@@ -43,6 +43,27 @@ export default {
     }
   },
 
+  data() {
+    return {
+      labels: [
+        'Accurate thermometer not provided in refrigerated or hot holding equipment.',
+        'Food Protection Certificate not held by supervisor of food operations.',
+        'Non-food contact surface…nd underneath the unit.',
+        'Plumbing not properly in…t functioning properly.',
+        'Evidence of mice or live… and/or non-food areas.'
+      ],
+      datasets: [
+        {
+          data: [10, 20, 30, 40, 50],
+          backgroundColor: ['Red', 'Orange', 'Yellow', 'Green', 'Blue']
+        }
+      ],
+      option: {
+        title: { display: true, position: 'bottom', text: 'ViolationCodes' }
+      }
+    }
+  },
+
   async mounted() {
     try {
       let response = await fetch('https://data.cityofnewyork.us/resource/9hxz-c2kj.json?').then(
@@ -68,8 +89,13 @@ export default {
 </script>
 
 <template>
-  <h1>School Cleaniness Level</h1>
+  <h1>School Cleanliness Level</h1>
   <Bar v-if="loaded" :data="data" :options="options" />
+  <!-- <chartjs-doughnut
+    v-bind:labels="labels"
+    v-bind:datasets="datatsets"
+    v-bind:option="option"
+  ></chartjs-doughnut> -->
 </template>
 
 <style scoped>
@@ -88,7 +114,7 @@ h1 {
     color: rgb(19, 217, 75);
   }
   50% {
-    color: green;
+    color: rgb(0, 128, 117);
   }
   75% {
     color: rgb(98, 177, 193);
