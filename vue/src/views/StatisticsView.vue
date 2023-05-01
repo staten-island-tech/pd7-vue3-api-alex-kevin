@@ -12,7 +12,6 @@ import {
 import { Bar } from 'vue-chartjs'
 import Chart from 'chart.js/auto'
 
-
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 export default {
   name: 'Bar graph',
@@ -39,7 +38,6 @@ export default {
     }
   },
 
-
   async mounted() {
     try {
       let response = await fetch('https://data.cityofnewyork.us/resource/9hxz-c2kj.json?').then(
@@ -64,7 +62,6 @@ export default {
     console.log('Component mounted.')
     const ctx = document.getElementById('myChart')
 
-
     const data = {
       labels: [
         'No facilities available to sanitize utensils and equipments',
@@ -81,17 +78,25 @@ export default {
       ]
     }
 
-
     const myChart = new Chart(ctx, {
       type: 'doughnut',
       data: data
-    }),
+    })
   }
 }
 </script>
 
 <template>
   <h1>School Cleanliness Level</h1>
+  <label for="graphs">Choose a graph:</label>
+
+  <select id="doughtnut-graph">
+    <option value="Brooklyn">Brooklyn</option>
+    <option value="Queens">Queens</option>
+    <option value="Bronx">Bronx</option>
+    <option value="Manhattan">Manhattan</option>
+    <option value="Staten Island">Staten Island</option>
+  </select>
   <Bar v-if="loaded" :data="data" :options="options" />
   <canvas id="myChart" width="400" height="400"></canvas>
 </template>
@@ -103,7 +108,12 @@ h1 {
   margin: 1%;
   animation: heading 5s infinite;
 }
-
+#doughtnut-graph {
+  font-size: 2rem;
+}
+.graphs {
+  text-align: center;
+}
 @keyframes heading {
   0% {
     color: rgb(124, 218, 0);
