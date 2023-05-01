@@ -1,8 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&display=swap');
-
 @font-face {
   font-family: 'Instrument Sans';
+  font-weight: 400;
   src: url('./fonts/instrument_sans_fonts/InstrumentSans-Regular.otf');
+}
+@font-face {
+  font-family: 'Instrument Sans';
+  font-weight: 500;
+  src: url('./fonts/instrument_sans_fonts/InstrumentSans-Medium.otf');
+}
+@font-face {
+  font-family: 'Instrument Sans';
+  font-weight: 600;
+  src: url('./fonts/instrument_sans_fonts/InstrumentSans-SemiBold.otf');
 }
 
 *,
@@ -16,7 +25,8 @@ html {
 
 body {
   font-size: 5rem;
-  background-color: #e0e0e0;
+  background-color: #eff0eb;
+  color: #102e45;
   font-family: 'Instrument Sans';
 }
 h1,
@@ -25,6 +35,6 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'EB Garamond', serif;
+  font-family: 'Instrument Sans';
   font-weight: 600;
 }

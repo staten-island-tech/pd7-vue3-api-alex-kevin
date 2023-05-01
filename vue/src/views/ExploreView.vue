@@ -24,7 +24,6 @@ onMounted(() => {
 </script>
 
 <template>
-  <p>search interface</p>
   <tr>
     <th>School Name</th>
     <th>Violation Description</th>
@@ -78,9 +77,17 @@ td {
   border-style: solid;
   text-align: center;
   padding: 5px;
+  font-size: 2rem;
+}
+th {
+  font-weight: 600;
+}
+
+td {
+  cursor: pointer;
 }
 
 tr:hover {
-  background-color: rgb(215, 215, 215);
+  background-color: rgba(133, 201, 250, 0.4);
 }
 </style>
