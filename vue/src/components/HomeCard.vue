@@ -29,6 +29,11 @@ const props = defineProps({
   border-style: solid;
   padding: 2.5rem;
   margin: 6rem;
+  transition: all 0.5s;
+}
+
+.home-card:hover {
+  scale: 1.05;
 }
 
 h2 {
