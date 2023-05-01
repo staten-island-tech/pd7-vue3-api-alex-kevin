@@ -1,7 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import StatisticsView from '../views/StatisticsView.vue'
-import SearchView from '../views/SearchView.vue'
 import ErrorView from '../views/ErrorView.vue'
 
 const router = createRouter({
@@ -10,17 +7,23 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomeView
+      component: () => import('../views/HomeView.vue')
     },
     {
       path: '/statistics',
-      name: 'statistics',
-      component: StatisticsView
+      name: 'Statistics',
+      component: () => import('../views/StatisticsView.vue')
     },
     {
-      path: '/search',
-      name: 'Search',
-      component: SearchView
+      path: '/explore',
+      name: 'Explore',
+      component: () => import('../views/ExploreView.vue')
+    },
+    {
+      path: '/cafeteria/:entityid:schoolname:borough:number:street:address_line_1:address_line_2:zipcode:lastinspection:permittee:inspectiondate:code:violationdescription:level:latitude:longitude:communityboard:councildistrict:bin:bbl:nta',
+      name: 'Cafeteria',
+      props: true,
+      component: () => import('../views/CafeteriaView.vue')
     },
     {
       path: '/error/:errorCode',

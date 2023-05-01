@@ -1,3 +1,19 @@
+@font-face {
+  font-family: 'Instrument Sans';
+  font-weight: 400;
+  src: url('./fonts/instrument_sans_fonts/InstrumentSans-Regular.otf');
+}
+@font-face {
+  font-family: 'Instrument Sans';
+  font-weight: 500;
+  src: url('./fonts/instrument_sans_fonts/InstrumentSans-Medium.otf');
+}
+@font-face {
+  font-family: 'Instrument Sans';
+  font-weight: 600;
+  src: url('./fonts/instrument_sans_fonts/InstrumentSans-SemiBold.otf');
+}
+
 *,
 body,
 html {
@@ -5,9 +21,20 @@ html {
   margin: 0;
   box-sizing: border-box;
   font-size: 62.5%;
-  font-family: 'Sofia Sans Condensed', sans-serif;
 }
 
 body {
   font-size: 5rem;
+  background-color: #eff0eb;
+  color: #102e45;
+  font-family: 'Instrument Sans';
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Instrument Sans';
+  font-weight: 600;
 }
