@@ -10,11 +10,13 @@ import {
   LinearScale
 } from 'chart.js'
 import { Bar } from 'vue-chartjs'
+import { Doughnut } from 'vue-chartjs'
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 export default {
   name: 'App',
   components: {
-    Bar
+    Bar,
+    Doughnut
   },
   data() {
     return {
@@ -22,6 +24,25 @@ export default {
       levelG: [],
       levelC: [],
       levelAVG: [],
+      data: {
+        labels: ['G', 'A', 'C'],
+        datasets: [
+          {
+            label: ['Amount of school'],
+            backgroundColor: ['#85c9fa', '#1373d6', '#102e45'],
+            borderColor: ['rgb(66, 191, 245)', 'rgb(15, 209, 255)', 'rgb(39, 196, 186)'],
+            borderWidth: 4
+          }
+        ]
+      },
+      options: {
+        responsive: true
+      }
+    }
+  },
+  data() {
+    return {
+      loaded: false,
       data: {
         labels: ['G', 'A', 'C'],
         datasets: [
