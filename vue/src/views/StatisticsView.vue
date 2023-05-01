@@ -77,5 +77,24 @@ h1 {
   font-size: 5rem;
   text-align: center;
   margin: 1%;
+  animation: heading 5s infinite;
+}
+
+@keyframes heading {
+  0% {
+    color: rgb(124, 218, 0);
+  }
+  25% {
+    color: rgb(19, 217, 75);
+  }
+  50% {
+    color: green;
+  }
+  75% {
+    color: rgb(98, 177, 193);
+  }
+  100% {
+    color: blue;
+  }
 }
 </style>
