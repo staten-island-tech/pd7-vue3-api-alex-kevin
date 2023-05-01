@@ -38,6 +38,7 @@ export default {
       }
     }
   },
+
   async mounted() {
     try {
       let response = await fetch('https://data.cityofnewyork.us/resource/9hxz-c2kj.json?').then(
@@ -71,5 +72,24 @@ h1 {
   font-size: 5rem;
   text-align: center;
   margin: 1%;
+  animation: heading 5s infinite;
+}
+
+@keyframes heading {
+  0% {
+    color: rgb(124, 218, 0);
+  }
+  25% {
+    color: rgb(19, 217, 75);
+  }
+  50% {
+    color: green;
+  }
+  75% {
+    color: rgb(98, 177, 193);
+  }
+  100% {
+    color: blue;
+  }
 }
 </style>
