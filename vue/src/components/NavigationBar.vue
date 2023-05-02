@@ -8,14 +8,14 @@ import { RouterLink } from 'vue-router'
       <RouterLink to="/">
         <button>Home</button>
       </RouterLink>
-      <RouterLink to="/statistics">
-        <button>Statistics</button>
+      <RouterLink to="/explore">
+        <button>Explore</button>
       </RouterLink>
       <RouterLink to="/doughnut">
         <button>Doughtnut Chart</button>
       </RouterLink>
-      <RouterLink to="/explore">
-        <button>Explore</button>
+      <RouterLink to="/statistics">
+        <button>Statistics</button>
       </RouterLink>
     </nav>
   </header>

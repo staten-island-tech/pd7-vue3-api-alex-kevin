@@ -9,15 +9,22 @@ import HomeCard from '../components/HomeCard.vue'
     :clickable="false"
   />
   <HomeCard
-    title="Statistics"
-    description="Explore the statistics of school cafeterias' sanitary conditions and how they stack up."
-    :clickable="true"
-    linkURL="/statistics"
-  />
-  <HomeCard
     title="Explore"
     description="Looking for a specific school cafeteria? Want to browse through the different school cafeteria sanitary reports? Access all of the school cafeteria sanitary condition reports in the database."
     :clickable="true"
     linkURL="/explore"
+  />
+
+  <HomeCard
+    title="Doughnut Chart"
+    description="Do you want to know the violation codes of some of the school and the reason why they recieved the level that they got?"
+    :clickable="true"
+    linkURL="/doughnut"
+  />
+  <HomeCard
+    title="Statistics"
+    description="Explore the statistics of school cafeterias' sanitary conditions and how they stack up."
+    :clickable="true"
+    linkURL="/statistics"
   />
 </template>

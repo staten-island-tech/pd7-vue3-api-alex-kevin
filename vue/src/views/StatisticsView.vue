@@ -10,7 +10,6 @@ import {
   LinearScale
 } from 'chart.js'
 import { Bar } from 'vue-chartjs'
-import Chart from 'chart.js/auto'
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 export default {
@@ -57,48 +56,13 @@ export default {
     } catch (error) {
       console.log(error)
     }
-  },
-  async mounted() {
-    console.log('Component mounted.')
-    const ctx = document.getElementById('myChart')
-
-    const data = {
-      labels: [
-        'No facilities available to sanitize utensils and equipments',
-        'Food not protected from contamination',
-        'Food protection certification not held by supervisor of food operations',
-        'Evidence of mice present in food'
-      ],
-      datasets: [
-        {
-          data: [300, 50, 100],
-          backgroundColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 205, 86)'],
-          hoverOffset: 4
-        }
-      ]
-    }
-
-    const myChart = new Chart(ctx, {
-      type: 'doughnut',
-      data: data
-    })
   }
 }
 </script>
 
 <template>
   <h1>School Cleanliness Level</h1>
-  <label for="graphs">Choose a graph:</label>
-
-  <select id="doughtnut-graph">
-    <option value="Brooklyn">Brooklyn</option>
-    <option value="Queens">Queens</option>
-    <option value="Bronx">Bronx</option>
-    <option value="Manhattan">Manhattan</option>
-    <option value="Staten Island">Staten Island</option>
-  </select>
   <Bar v-if="loaded" :data="data" :options="options" />
-  <canvas id="myChart" width="400" height="400"></canvas>
 </template>
 
 <style scoped>
@@ -116,19 +80,19 @@ h1 {
 }
 @keyframes heading {
   0% {
-    color: rgb(124, 218, 0);
+    color: #011f4b;
   }
   25% {
-    color: rgb(19, 217, 75);
+    color: #03396c;
   }
   50% {
-    color: green;
+    color: #005b96;
   }
   75% {
-    color: rgb(98, 177, 193);
+    color: #6497b1;
   }
   100% {
-    color: blue;
+    color: #b3cde0;
   }
 }
 </style>
