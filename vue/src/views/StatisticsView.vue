@@ -41,10 +41,18 @@ export default {
     try {
       let response = await fetch('https://data.cityofnewyork.us/resource/9hxz-c2kj.json?').then(
         async (res) => {
+          const finalData = computed({
+            if
+          })
           const data = await res.json()
-          this.levelG = data.filter((info) => info.level === 'G')
-          this.levelC = data.filter((info) => info.level === 'C')
-          this.levelAVG = data.filter((info) => info.level === 'A')
+          const brooklynData = data.filter((info) => info.borough === 'Brooklyn')
+          const manhattanData = data.filter((info) => info.borough === 'Manhattan')
+          const queensData = data.filter((info) => info.borough === 'Queens')
+          const bronxData = data.filter((info) => info.borough === 'Bronx')
+          const statenIslandData = data.filter((info) => info.borough === 'Staten Island')
+          this.levelG = brooklynData.filter((info) => info.level === 'G')
+          this.levelC = brooklynData.filter((info) => info.level === 'C')
+          this.levelAVG = brooklynData.filter((info) => info.level === 'A')
           this.data.datasets[0].data = [
             this.levelG.length,
             this.levelC.length,
@@ -62,6 +70,16 @@ export default {
 
 <template>
   <h1>School Cleanliness Level</h1>
+  <label for="graphs">Choose a graph:</label>
+
+  <select id="doughtnut-graph">
+    <option value="All">All borough</option>
+    <option value="Brooklyn">Brooklyn</option>
+    <option value="Queens">Queens</option>
+    <option value="Bronx">Bronx</option>
+    <option value="Manhattan">Manhattan</option>
+    <option value="Staten Island">Staten Island</option>
+  </select>
   <Bar v-if="loaded" :data="data" :options="options" />
 </template>
 
