@@ -17,9 +17,9 @@ import HomeCard from '../components/HomeCard.vue'
 
   <HomeCard
     title="Doughnut Chart"
-    description="Do you want to know the violation codes of some of the school and the reason why they recieved the level that they got?"
+    description="Do you want to know the violation codes of some of the school cafeterias?"
     :clickable="true"
-    linkURL="/doughnut"
+    linkURL="/doughnut-chart"
   />
   <HomeCard
     title="Statistics"

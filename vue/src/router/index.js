@@ -19,7 +19,7 @@ const router = createRouter({
       component: () => import('../views/ExploreView.vue')
     },
     {
-      path: '/doughnut',
+      path: '/doughnut-chart',
       name: 'Doughnut',
       component: () => import('../views/DoughnutView.vue')
     },

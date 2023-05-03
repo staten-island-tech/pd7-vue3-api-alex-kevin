@@ -113,8 +113,8 @@ export default {
 </script>
 
 <template>
-  <h1>School Cleanliness Level</h1>
-  <label for="graphs">Choose a graph:</label>
+  <h1>Violation Codes</h1>
+  <label for="graphs">Choose a graph: </label>
 
   <select id="doughtnut-graph" onchange="">
     <option @click="select" value="Brooklyn">Brooklyn</option>
