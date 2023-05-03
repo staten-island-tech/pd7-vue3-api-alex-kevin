@@ -1,13 +1,13 @@
 <script setup>
 import { ref, computed, onMounted, watch } from 'vue'
-import DoughnutChart from '../components/DoughnutChart.vue'
+import BarChart from '../components/BarChart.vue'
 const dataArray = ref({
-  allBoroughs: [0, 0, 0, 0, 0, 0],
-  brooklyn: [0, 0, 0, 0, 0, 0],
-  manhattan: [0, 0, 0, 0, 0, 0],
-  bronx: [0, 0, 0, 0, 0, 0],
-  queens: [0, 0, 0, 0, 0, 0],
-  statenIsland: [0, 0, 0, 0, 0, 0]
+  allBoroughs: [0, 0, 0, 0],
+  brooklyn: [0, 0, 0, 0],
+  manhattan: [0, 0, 0, 0],
+  bronx: [0, 0, 0, 0],
+  queens: [0, 0, 0, 0],
+  statenIsland: [0, 0, 0, 0]
 })
 const selectedBorough = ref([])
 const cafeteriaData = ref('')
@@ -41,10 +41,7 @@ onMounted(() => {
     'https://data.cityofnewyork.us/resource/9hxz-c2kj.json?$query=SELECT%0A%20%20%60entityid%60%2C%0A%20%20%60schoolname%60%2C%0A%20%20%60borough%60%2C%0A%20%20%60number%60%2C%0A%20%20%60street%60%2C%0A%20%20%60address_line_1%60%2C%0A%20%20%60address_line_2%60%2C%0A%20%20%60zipcode%60%2C%0A%20%20%60lastinspection%60%2C%0A%20%20%60permittee%60%2C%0A%20%20%60inspectiondate%60%2C%0A%20%20%60code%60%2C%0A%20%20%60violationdescription%60%2C%0A%20%20%60level%60%2C%0A%20%20%60latitude%60%2C%0A%20%20%60longitude%60%2C%0A%20%20%60communityboard%60%2C%0A%20%20%60councildistrict%60%2C%0A%20%20%60censustract%60%2C%0A%20%20%60bin%60%2C%0A%20%20%60bbl%60%2C%0A%20%20%60nta%60'
   ).then(() => {
     for (let i = 0; i < cafeteriaData.value.length; i++) {
-      if (
-        cafeteriaData.value[i].violationdescription ===
-        "Live roaches present in facility's food and/or non-food areas."
-      ) {
+      if (cafeteriaData.value[i].level === 'C') {
         if (cafeteriaData.value[i].borough === 'Brooklyn') {
           dataArray.value.brooklyn[0]++
         } else if (cafeteriaData.value[i].borough === 'Queens') {
@@ -56,11 +53,7 @@ onMounted(() => {
         } else if (cafeteriaData.value[i].borough === 'Staten Island') {
           dataArray.value.statenIsland[0]++
         }
-      } else if (
-        undefinedCatch(cafeteriaData.value[i].violationdescription)
-          .toLowerCase()
-          .includes('contamination')
-      ) {
+      } else if (cafeteriaData.value[i].level === 'G') {
         if (cafeteriaData.value[i].borough === 'Brooklyn') {
           dataArray.value.brooklyn[1]++
         } else if (cafeteriaData.value[i].borough === 'Queens') {
@@ -72,10 +65,7 @@ onMounted(() => {
         } else if (cafeteriaData.value[i].borough === 'Staten Island') {
           dataArray.value.statenIsland[1]++
         }
-      } else if (
-        cafeteriaData.value[i].violationdescription ===
-        'Food Protection Certificate not held by supervisor of food operations.'
-      ) {
+      } else if (cafeteriaData.value[i].level === 'AV') {
         if (cafeteriaData.value[i].borough === 'Brooklyn') {
           dataArray.value.brooklyn[2]++
         } else if (cafeteriaData.value[i].borough === 'Queens') {
@@ -87,10 +77,7 @@ onMounted(() => {
         } else if (cafeteriaData.value[i].borough === 'Staten Island') {
           dataArray.value.statenIsland[2]++
         }
-      } else if (
-        cafeteriaData.value[i].violationdescription ===
-        "Evidence of mice or live mice present in facility's food and/or non-food areas."
-      ) {
+      } else {
         if (cafeteriaData.value[i].borough === 'Brooklyn') {
           dataArray.value.brooklyn[3]++
         } else if (cafeteriaData.value[i].borough === 'Queens') {
@@ -102,37 +89,9 @@ onMounted(() => {
         } else if (cafeteriaData.value[i].borough === 'Staten Island') {
           dataArray.value.statenIsland[3]++
         }
-      } else if (
-        cafeteriaData.value[i].violationdescription === '' ||
-        cafeteriaData.value[i].violationdescription === null ||
-        cafeteriaData.value[i].violationdescription === undefined
-      ) {
-        if (cafeteriaData.value[i].borough === 'Brooklyn') {
-          dataArray.value.brooklyn[4]++
-        } else if (cafeteriaData.value[i].borough === 'Queens') {
-          dataArray.value.queens[4]++
-        } else if (cafeteriaData.value[i].borough === 'Manhattan') {
-          dataArray.value.manhattan[4]++
-        } else if (cafeteriaData.value[i].borough === 'Bronx') {
-          dataArray.value.bronx[4]++
-        } else if (cafeteriaData.value[i].borough === 'Staten Island') {
-          dataArray.value.statenIsland[4]++
-        }
-      } else {
-        if (cafeteriaData.value[i].borough === 'Brooklyn') {
-          dataArray.value.brooklyn[5]++
-        } else if (cafeteriaData.value[i].borough === 'Queens') {
-          dataArray.value.queens[5]++
-        } else if (cafeteriaData.value[i].borough === 'Manhattan') {
-          dataArray.value.manhattan[5]++
-        } else if (cafeteriaData.value[i].borough === 'Bronx') {
-          dataArray.value.bronx[5]++
-        } else if (cafeteriaData.value[i].borough === 'Staten Island') {
-          dataArray.value.statenIsland[5]++
-        }
       }
     }
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 4; i++) {
       dataArray.value.allBoroughs[i] =
         dataArray.value.brooklyn[i] +
         dataArray.value.bronx[i] +
@@ -152,7 +111,7 @@ watch(selectedBorough, () => {
 </script>
 
 <template>
-  <h1>Violation Descriptions</h1>
+  <h1>Violation Codes</h1>
   <label for="graphs">Select Borough: </label>
   <select id="doughtnut-graph" v-model="selectedBorough">
     <option :value="dataArray.allBoroughs">All Boroughs</option>
@@ -162,28 +121,21 @@ watch(selectedBorough, () => {
     <option :value="dataArray.manhattan">Manhattan</option>
     <option :value="dataArray.statenIsland">Staten Island</option>
   </select>
-  <DoughnutChart
+  <BarChart
     v-if="loaded"
     :chartData="{
-      labels: [
-        'Live roaches present in facility food and or non-food areas.',
-        'Food not protected from contamination',
-        'Food protection certification not held by supervisor of food operations',
-        'Evidence of mice present in food',
-        'None',
-        'Other'
-      ],
+      labels: ['C', 'G', 'AV', 'None'],
       datasets: [
         {
-          backgroundColor: [
-            'rgb(255, 99, 132)',
-            'rgb(54, 162, 235)',
-            'rgb(255, 205, 86)',
-            'rgb(154, 238, 144)',
-            'rgb(15, 166, 130)',
-            'rgb(155,155,155)'
+          label: ['Amount of School Cafeterias'],
+          backgroundColor: ['#85c9fa', '#1373d6', '#102e45', 'rgb(15, 126, 80)'],
+          borderColor: [
+            'rgb(66, 191, 245)',
+            'rgb(15, 209, 255)',
+            'rgb(39, 196, 186)',
+            'rgb(20, 196, 140)'
           ],
-          hoverOffset: 35,
+          borderWidth: 4,
           data: selectedBorough
         }
       ]
