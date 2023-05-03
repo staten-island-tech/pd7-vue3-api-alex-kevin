@@ -13,7 +13,7 @@ import { Bar } from 'vue-chartjs'
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 export default {
-  name: 'Bar graph',
+  name: 'BarGraph',
   components: {
     Bar
   },
@@ -82,9 +82,9 @@ export default {
       }
       setTimeout(this.loadedTrue, 500)
     }
-  },
+  }
 
-  async mounted() {
+  /* async mounted() {
     try {
       let response = await fetch('https://data.cityofnewyork.us/resource/9hxz-c2kj.json?').then(
         async (res) => {
@@ -108,7 +108,7 @@ export default {
     } catch (error) {
       console.log(error)
     }
-  }
+  } */
 }
 </script>
 
