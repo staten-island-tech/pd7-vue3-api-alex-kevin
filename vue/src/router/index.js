@@ -20,8 +20,13 @@ const router = createRouter({
     },
     {
       path: '/doughnut-chart',
-      name: 'Doughnut',
+      name: 'Doughnut Chart',
       component: () => import('../views/DoughnutView.vue')
+    },
+    {
+      path: '/bar-chart',
+      name: 'Bar Chart',
+      component: () => import('../views/BarView.vue')
     },
     {
       path: '/cafeteria/:entityid:schoolname:borough:number:street:address_line_1:address_line_2:zipcode:lastinspection:permittee:inspectiondate:code:violationdescription:level:latitude:longitude:communityboard:councildistrict:bin:bbl:nta',

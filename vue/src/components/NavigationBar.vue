@@ -11,9 +11,6 @@ import { RouterLink } from 'vue-router'
       <RouterLink to="/explore">
         <button>Explore</button>
       </RouterLink>
-      <RouterLink to="/doughnut-chart">
-        <button>Doughtnut Chart</button>
-      </RouterLink>
       <RouterLink to="/statistics">
         <button>Statistics</button>
       </RouterLink>
