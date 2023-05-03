@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, onMounted, watch } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 import DoughnutChart from '../components/DoughnutChart.vue'
 const dataArray = ref({
   allBoroughs: [0, 0, 0, 0, 0, 0],

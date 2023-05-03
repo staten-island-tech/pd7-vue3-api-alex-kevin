@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, onMounted, watch } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 import BarChart from '../components/BarChart.vue'
 const dataArray = ref({
   allBoroughs: [0, 0, 0, 0],
@@ -13,14 +13,6 @@ const selectedBorough = ref([])
 const cafeteriaData = ref('')
 // const computedData = ref('')
 let loaded = ref(false)
-
-function undefinedCatch(input) {
-  if (input == null || input == undefined) {
-    return ''
-  } else {
-    return input
-  }
-}
 
 async function getDataFromAPI(url) {
   try {
