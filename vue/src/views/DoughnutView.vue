@@ -51,15 +51,6 @@ export default {
 
 <template class="All">
   <h1>Violation Descriptions</h1>
-  <label for="graphs">Choose a graph: </label>
-
-  <select id="doughtnut-graph" onchange="">
-    <option @click="select" value="Brooklyn">Brooklyn</option>
-    <option @click="select" value="Queens">Queens</option>
-    <option @click="select" value="Bronx">Bronx</option>
-    <option @click="select" value="Manhattan">Manhattan</option>
-    <option @click="select" value="Staten Island">Staten Island</option>
-  </select>
   <Bar v-if="loaded" :data="data" :options="options" />
   <canvas id="myChart"></canvas>
 </template>
