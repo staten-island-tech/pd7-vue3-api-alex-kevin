@@ -114,7 +114,7 @@ export default {
 
 <template>
   <h1>Violation Codes</h1>
-  <label for="graphs">Choose a graph: </label>
+  <label for="graphs">Select Borough: </label>
 
   <select id="doughtnut-graph" onchange="">
     <option @click="select" value="Brooklyn">Brooklyn</option>

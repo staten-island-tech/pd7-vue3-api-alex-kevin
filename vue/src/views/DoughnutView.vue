@@ -1,97 +1,76 @@
-<script>
-import { ref, onMounted } from 'vue'
-import {
-  Chart as ChartJS,
-  Title,
-  Tooltip,
-  Legend,
-  BarElement,
-  CategoryScale,
-  LinearScale
-} from 'chart.js'
-import { Bar } from 'vue-chartjs'
-import Chart from 'chart.js/auto'
-
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
-export default {
-  async mounted() {
-    if ((this.loaded = true)) {
-      const ctx = document.getElementById('myChart')
-
-      const data = {
-        labels: [
-          'Live roaches present in facility food and or non-food areas.',
-          'Food not protected from contamination',
-          'Food protection certification not held by supervisor of food operations',
-          'Evidence of mice present in food'
-        ],
-        datasets: [
-          {
-            data: [19, 18, 11, 80],
-            backgroundColor: [
-              'rgb(255, 99, 132)',
-              'rgb(54, 162, 235)',
-              'rgb(255, 205, 86)',
-              'rgb(144, 238, 144)'
-            ],
-            hoverOffset: 35
-          }
-        ]
-      }
-
-      const myChart = new Chart(ctx, {
-        type: 'doughnut',
-        data: data
-      })
-      // }else if() =>{},
+<script setup>
+import { ref, computed, onMounted } from 'vue'
+import DoughnutChart from '../components/DoughnutChart.vue'
+const selectedBorough = ref('')
+const cafeteriaData = ref('')
+let loaded = false
+async function getDataFromAPI(url) {
+  try {
+    let response = await fetch(url)
+    if (response.status < 200 || response.status > 299) {
+      console.log(response.status)
+      throw Error(response.status)
+    } else {
+      cafeteriaData.value = await response.json()
+      console.log(cafeteriaData.value)
     }
+  } catch (error) {
+    console.log(error)
+    this.$router.push(`/error/${error}`)
   }
 }
+onMounted(() => {
+  getDataFromAPI(
+    'https://data.cityofnewyork.us/resource/9hxz-c2kj.json?$query=SELECT%0A%20%20%60entityid%60%2C%0A%20%20%60schoolname%60%2C%0A%20%20%60borough%60%2C%0A%20%20%60number%60%2C%0A%20%20%60street%60%2C%0A%20%20%60address_line_1%60%2C%0A%20%20%60address_line_2%60%2C%0A%20%20%60zipcode%60%2C%0A%20%20%60lastinspection%60%2C%0A%20%20%60permittee%60%2C%0A%20%20%60inspectiondate%60%2C%0A%20%20%60code%60%2C%0A%20%20%60violationdescription%60%2C%0A%20%20%60level%60%2C%0A%20%20%60latitude%60%2C%0A%20%20%60longitude%60%2C%0A%20%20%60communityboard%60%2C%0A%20%20%60councildistrict%60%2C%0A%20%20%60censustract%60%2C%0A%20%20%60bin%60%2C%0A%20%20%60bbl%60%2C%0A%20%20%60nta%60'
+  )
+})
+const computedData = computed(() => {
+  let filteredData = ''
+  if (selectedBorough.value === 'All Boroughs') {
+    filteredData = cafeteriaData
+  } else {
+    filteredData = cafeteriaData.filter((info) => info.borough === selectedBorough.value)
+  }
+  return {
+    labels: [
+      'Live roaches present in facility food and or non-food areas.',
+      'Food not protected from contamination',
+      'Food protection certification not held by supervisor of food operations',
+      'Evidence of mice present in food',
+      'Other'
+    ],
+    datasets: [
+      {
+        backgroundColor: [
+          'rgb(255, 99, 132)',
+          'rgb(54, 162, 235)',
+          'rgb(255, 205, 86)',
+          'rgb(144, 238, 144)',
+          'rgb(155,155,155)'
+        ],
+        hoverOffset: 35,
+        data: [40, 20, 80, 10, 10]
+      }
+    ]
+  }
+})
 </script>
 
-<template class="All">
-  <h1>Violation Descriptions</h1>
-  <label for="graphs">Choose a graph: </label>
-
-  <select id="doughtnut-graph" onchange="">
-    <option @click="select" value="Brooklyn">Brooklyn</option>
-    <option @click="select" value="Queens">Queens</option>
-    <option @click="select" value="Bronx">Bronx</option>
-    <option @click="select" value="Manhattan">Manhattan</option>
-    <option @click="select" value="Staten Island">Staten Island</option>
+<template>
+  <label for="graphs">Select Borough: </label>
+  <select id="doughtnut-graph" v-model="selectedBorough">
+    <option selected value="All Boroughs">All Boroughs</option>
+    <option value="Brooklyn">Brooklyn</option>
+    <option value="Queens">Queens</option>
+    <option value="Bronx">Bronx</option>
+    <option value="Manhattan">Manhattan</option>
+    <option value="Staten Island">Staten Island</option>
   </select>
-  <Bar v-if="loaded" :data="data" :options="options" />
-  <canvas id="myChart"></canvas>
+  <DoughnutChart
+    v-if="loaded"
+    :chartData="computedData"
+    :chartOptions="{
+      responsive: true
+    }"
+  />
 </template>
-
-<style scoped>
-h1 {
-  font-size: 5rem;
-  text-align: center;
-  margin-top: 1rem;
-  animation: heading 5s infinite;
-}
-label {
-  margin-left: 80rem;
-}
-.graphs {
-  text-align: center;
-}
-@keyframes heading {
-  0% {
-    color: rgb(124, 218, 0);
-  }
-  25% {
-    color: rgb(19, 217, 75);
-  }
-  50% {
-    color: green;
-  }
-  75% {
-    color: rgb(98, 177, 193);
-  }
-  100% {
-    color: blue;
-  }
-}
-</style>
