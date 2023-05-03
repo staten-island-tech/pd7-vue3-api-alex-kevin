@@ -56,21 +56,8 @@ const computedData = computed(() => {
 })
 </script>
 
-<template>
-  <label for="graphs">Select Borough: </label>
-  <select id="doughtnut-graph" v-model="selectedBorough">
-    <option selected value="All Boroughs">All Boroughs</option>
-    <option value="Brooklyn">Brooklyn</option>
-    <option value="Queens">Queens</option>
-    <option value="Bronx">Bronx</option>
-    <option value="Manhattan">Manhattan</option>
-    <option value="Staten Island">Staten Island</option>
-  </select>
-  <DoughnutChart
-    v-if="loaded"
-    :chartData="computedData"
-    :chartOptions="{
-      responsive: true
-    }"
-  />
+<template class="All">
+  <h1>Violation Descriptions</h1>
+  <Bar v-if="loaded" :data="data" :options="options" />
+  <canvas id="myChart"></canvas>
 </template>
