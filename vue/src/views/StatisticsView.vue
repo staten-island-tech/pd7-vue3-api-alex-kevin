@@ -22,6 +22,9 @@ export default {
       borough: '',
       brooklyn: [],
       queens: [],
+      manhattan: [],
+      statenIsland: [],
+      bronx: [],
       loaded: false,
       data: {
         labels: ['G', 'A', 'C'],
