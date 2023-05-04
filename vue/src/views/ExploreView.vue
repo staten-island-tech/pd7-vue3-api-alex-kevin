@@ -1,4 +1,5 @@
 <script setup>
+import router from '@/router'
 import { ref, onMounted } from 'vue'
 const cafeteriaData = ref('')
 async function getDataFromAPI(url) {
@@ -13,7 +14,7 @@ async function getDataFromAPI(url) {
     }
   } catch (error) {
     console.log(error)
-    this.$router.push(`/error/${error}`)
+    router.push(`/error/${error}`)
   }
 }
 onMounted(() => {

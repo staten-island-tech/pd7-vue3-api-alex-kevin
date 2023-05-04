@@ -1,4 +1,5 @@
 <script setup>
+import router from "@/router";
 import { ref, onMounted, watch } from 'vue'
 import DoughnutChart from '../components/DoughnutChart.vue'
 const dataArray = ref({
@@ -33,7 +34,7 @@ async function getDataFromAPI(url) {
     }
   } catch (error) {
     console.log(error)
-    this.$router.push(`/error/${error}`)
+    router.push(`/error/${error}`)
   }
 }
 onMounted(() => {
