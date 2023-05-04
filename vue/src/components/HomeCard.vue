@@ -1,4 +1,5 @@
 <script setup>
+import router from '@/router'
 const props = defineProps({
   title: String,
   description: String,
@@ -12,7 +13,7 @@ const props = defineProps({
   <div
     class="home-card"
     :class="clickable ? 'clickable' : ''"
-    @click="this.$router.push({ path: linkURL })"
+    @click="router.push({ path: linkURL })"
   >
     <h2>{{ title }}</h2>
     <p>{{ description }}</p>

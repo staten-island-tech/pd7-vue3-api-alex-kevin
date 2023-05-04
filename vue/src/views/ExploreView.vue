@@ -35,7 +35,7 @@ onMounted(() => {
     v-for="cafeteria in cafeteriaData"
     :key="cafeteria.entityid"
     @click="
-      this.$router.push({
+      router.push({
         name: 'Cafeteria',
         params: {
           entityid: cafeteria.entityid,
